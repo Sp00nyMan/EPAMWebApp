@@ -10,9 +10,9 @@ public class Message
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	String text;
-	String tag;
+	private Long id;
+	private String text;
+	private String tag;
 
 	public Message(){}
 	public Message(String text, String tag)	{
