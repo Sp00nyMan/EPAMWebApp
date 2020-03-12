@@ -1,33 +1,31 @@
 package application.core;
 
+import application.core.Services.DatabaseService;
 import application.core.domain.Message;
-import application.core.repositories.MessageRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@Controller
+@RestController
 public class MainController
 {
-	private final MessageRepository messageRepository;
-
-	public MainController(MessageRepository messageRepository) {this.messageRepository = messageRepository;}
+	private DatabaseService service = new DatabaseService();
 
 	@GetMapping
 	public String main(Map<String, Object> model)
 	{
-		Iterable<Message> messages = messageRepository.findAll();
+		Iterable<Message> messages = service.findAllMessages();
 		model.put("messages", messages);
 		return "mainPage";
 	}
 	@PostMapping
 	public String addMsg(Map<String, Object> model, @RequestParam String text, @RequestParam String tag)
 	{
-		messageRepository.save(new Message(text, tag));
-		Iterable<Message> messages = messageRepository.findAll();
+		service.addMessage(new Message(text, tag));
+		Iterable<Message> messages = service.findAllMessages();
 		model.put("messages", messages);
 		return "mainPage";
 	}
