@@ -3,6 +3,7 @@ package application.core.Database.repositories;
 import application.core.domain.Message;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class MessageCollection
 {
@@ -27,5 +28,9 @@ public class MessageCollection
 			if(message.getId() == id)
 				return message;
 		return null;
+	}
+	public void remove(Long id)
+	{
+		messages.removeIf(message -> message.getId() == id);
 	}
 }

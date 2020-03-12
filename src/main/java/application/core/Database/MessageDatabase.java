@@ -22,4 +22,8 @@ public class MessageDatabase
 	{
 		return messages.getById(id);
 	}
+	public void delete(Long id)
+	{
+		messages.remove(id);
+	}
 }

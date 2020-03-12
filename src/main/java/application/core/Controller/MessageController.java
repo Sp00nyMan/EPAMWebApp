@@ -35,4 +35,19 @@ public class MessageController
 		List<Map<String, String>> messages = service.findAllMessagesAsMapList();
 		return messages.get(messages.size() - 1);
 	}
+	@PutMapping("{id}")
+	public Map<String, String> editMsg(@PathVariable String id, @RequestBody Map<String, String> msg)
+	{
+		Message message = service.findMessageById(Long.parseLong(id));
+		if(message == null)
+			throw new NotFoundException();
+		message.setText(msg.get("text"));
+		message.setTag(msg.get("tag"));
+		return message.asHashMap();
+	}
+	@DeleteMapping("{id}")
+	public void deleteMsg(@PathVariable String id)
+	{
+		service.deleteMessage(Long.parseLong(id));
+	}
 }

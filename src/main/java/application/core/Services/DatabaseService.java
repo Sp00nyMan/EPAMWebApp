@@ -48,4 +48,9 @@ public class DatabaseService
 	{
 		return messageDatabase.findById(id);
 	}
+
+	public void deleteMessage(Long id)
+	{
+		messageDatabase.delete(id);
+	}
 }
