@@ -15,18 +15,9 @@ public class MessageController
 	private DatabaseService service = new DatabaseService();
 
 	@GetMapping
-	public List<Map<String, String>> main(Map<String, Object> model)
+	public List<Map<String, String>> main()
 	{
 		List<Map<String, String>> messages = service.findAllMessagesAsMapList();
-		model.put("messages", messages);
-		return messages;
-	}
-	@PostMapping
-	public List<Map<String, String>> addMsg(Map<String, Object> model, @RequestParam String text, @RequestParam String tag)
-	{
-		service.addMessage(new Message(text, tag));
-		List<Map<String, String>> messages = service.findAllMessagesAsMapList();
-		model.put("messages", messages);
 		return messages;
 	}
 	@GetMapping("{id}")
@@ -36,5 +27,12 @@ public class MessageController
 		if(message == null)
 			throw new NotFoundException();
 		return message.asHashMap();
+	}
+	@PostMapping
+	public Map<String, String> addMsg(@RequestBody Map<String, String> message)
+	{
+		service.addMessage(message);
+		List<Map<String, String>> messages = service.findAllMessagesAsMapList();
+		return messages.get(messages.size() - 1);
 	}
 }

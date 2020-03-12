@@ -5,7 +5,6 @@ import application.core.domain.Message;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +18,10 @@ public class DatabaseService
 	{
 		messageDatabase.save(message);
 	}
+	public void addMessage(Map<String, String> message)
+	{
+		messageDatabase.save(new Message(message.get("text"), message.get("tag")));
+	}
 
 	public ArrayList<Message> findAllMessages()
 	{
@@ -30,9 +33,10 @@ public class DatabaseService
 		List<Map<String, String>> list = new ArrayList<>();
 		if(messages.isEmpty())
 		{
-			messages.add(new Message("TEST1", "test"));
-			messages.add(new Message("TEST2", "test"));
-			messages.add(new Message("TEST3", "test"));
+			//return null;
+			messageDatabase.save(new Message("TEST1", "test"));
+			messageDatabase.save(new Message("TEST2", "test"));
+			messageDatabase.save(new Message("TEST3", "test"));
 		}
 		for (Message message : messages)
 		{
