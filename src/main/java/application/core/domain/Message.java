@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.HashMap;
 
 @Entity
 public class Message
@@ -48,5 +49,16 @@ public class Message
 	public void setTag(String tag)
 	{
 		this.tag = tag;
+	}
+
+	public HashMap<String, String> asHashMap()
+	{
+		HashMap<String, String> message = new HashMap<>()
+		{{
+			put("id", id.toString());
+			put("text", text);
+			put("tag", tag);
+		}};
+		return message;
 	}
 }
