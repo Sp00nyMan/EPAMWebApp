@@ -1,6 +1,8 @@
 package application.core.Services;
 
 import application.core.Database.MessageDatabase;
+import application.core.Exceptions.BadRequestExceptions.InvalidIdException;
+import application.core.Exceptions.NotFoundExceptions.MessageNotFoundException;
 import application.core.domain.Message;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +31,11 @@ public class DatabaseService
 	}
 	public List<Map<String, String>> findAllMessagesAsMapList()
 	{
-		ArrayList<Message> messages = messageDatabase.findAll();
+		ArrayList<Message> messages = findAllMessages();
 		List<Map<String, String>> list = new ArrayList<>();
 		if(messages.isEmpty())
 		{
+			//TODO
 			//return null;
 			messageDatabase.save(new Message("TEST1", "test"));
 			messageDatabase.save(new Message("TEST2", "test"));
@@ -46,7 +49,12 @@ public class DatabaseService
 	}
 	public Message findMessageById(Long id)
 	{
-		return messageDatabase.findById(id);
+		if(id < 0)
+			throw new InvalidIdException(id);
+		Message message = messageDatabase.findById(id);
+		if(message == null)
+			throw new MessageNotFoundException(id);
+		return message;
 	}
 
 	public void deleteMessage(Long id)
