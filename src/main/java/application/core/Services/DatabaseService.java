@@ -35,11 +35,7 @@ public class DatabaseService
 		List<Map<String, String>> list = new ArrayList<>();
 		if(messages.isEmpty())
 		{
-			//TODO
-			//return null;
-			messageDatabase.save(new Message("TEST1", "test"));
-			messageDatabase.save(new Message("TEST2", "test"));
-			messageDatabase.save(new Message("TEST3", "test"));
+			return null;
 		}
 		for (Message message : messages)
 		{

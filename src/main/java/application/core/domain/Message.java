@@ -1,5 +1,7 @@
 package application.core.domain;
 
+import application.core.Exceptions.BadRequestExceptions.BadRequestException;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,6 +40,8 @@ public class Message
 
 	public void setText(String text)
 	{
+		if(text == null)
+			throw new BadRequestException("Invalid Request: cannot find field \"text\"");
 		this.text = text;
 	}
 
@@ -48,6 +52,8 @@ public class Message
 
 	public void setTag(String tag)
 	{
+		if(text == null)
+			throw new BadRequestException("Invalid Request: cannot find field \"tag\"");
 		this.tag = tag;
 	}
 
