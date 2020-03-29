@@ -3,7 +3,7 @@ package application.core.Services;
 import application.core.Database.MessageDatabase;
 import application.core.Exceptions.BadRequestExceptions.InvalidIdException;
 import application.core.Exceptions.NotFoundExceptions.MessageNotFoundException;
-import application.core.domain.Message;
+import application.core.Domain.Message;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

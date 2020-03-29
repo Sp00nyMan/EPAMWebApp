@@ -1,6 +1,8 @@
-package application.core.domain;
+package application.core.Domain;
 
 import application.core.Exceptions.BadRequestExceptions.BadRequestException;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +11,15 @@ import javax.persistence.Id;
 import java.util.HashMap;
 
 @Entity
+@ApiModel(description = "All details about Message")
 public class Message
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@ApiModelProperty(notes = "Text of the message")
 	private String text;
+	@ApiModelProperty(notes = "Message's tag")
 	private String tag;
 
 	public Message(){}
