@@ -1,40 +1,41 @@
 package application.core.Controller;
 
+import application.core.Exceptions.NotFoundExceptions.NotFoundException;
 import application.core.Services.DatabaseService;
 import application.core.domain.Message;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("message")
+@Api(value = "Messages management controller", description = "Operations with messages")
 public class MessageController
 {
 	private DatabaseService service = new DatabaseService();
 
-	@GetMapping
-	public void main(HttpServletResponse response) throws IOException
-	{
-		response.sendRedirect("message/all");
-	}
-
+	@ApiOperation(value = "View all messages")
 	@GetMapping("all")
 	public ResponseEntity<List<Map<String, String>>> all()
 	{
 		List<Map<String, String>> messages = service.findAllMessagesAsMapList();
+		if(messages == null)
+			throw new NotFoundException("No messages found");
 		return new ResponseEntity<>(messages, HttpStatus.OK);
 	}
+	@ApiOperation(value = "Get message by id")
 	@GetMapping("{id}")
 	public ResponseEntity<Map<String, String>> getMessageById(@PathVariable String id)
 	{
 		Message message = service.findMessageById(Long.parseLong(id));
 		return new ResponseEntity<>(message.asHashMap(), HttpStatus.OK);
 	}
+
 	@PostMapping
 	public ResponseEntity<Map<String, String>> addMsg(@RequestBody Map<String, String> message)
 	{
