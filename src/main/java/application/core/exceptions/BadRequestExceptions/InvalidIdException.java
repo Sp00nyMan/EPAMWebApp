@@ -1,4 +1,4 @@
-package application.core.Exceptions.BadRequestExceptions;
+package application.core.exceptions.BadRequestExceptions;
 
 public class InvalidIdException extends BadRequestException
 {

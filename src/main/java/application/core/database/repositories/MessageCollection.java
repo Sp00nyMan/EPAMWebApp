@@ -1,6 +1,6 @@
-package application.core.Database.repositories;
+package application.core.database.repositories;
 
-import application.core.Domain.Message;
+import application.core.domain.Message;
 
 import java.util.ArrayList;
 

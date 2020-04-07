@@ -1,7 +1,7 @@
-package application.core.Database;
+package application.core.database;
 
-import application.core.Database.repositories.MessageCollection;
-import application.core.Domain.Message;
+import application.core.database.repositories.MessageCollection;
+import application.core.domain.Message;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package application.core.Controller;
+package application.core.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

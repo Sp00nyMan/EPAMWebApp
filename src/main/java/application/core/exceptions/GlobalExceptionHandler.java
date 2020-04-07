@@ -1,7 +1,7 @@
-package application.core.Exceptions;
+package application.core.exceptions;
 
-import application.core.Exceptions.BadRequestExceptions.BadRequestException;
-import application.core.Exceptions.NotFoundExceptions.NotFoundException;
+import application.core.exceptions.BadRequestExceptions.BadRequestException;
+import application.core.exceptions.NotFoundExceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

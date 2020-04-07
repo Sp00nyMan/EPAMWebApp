@@ -1,4 +1,4 @@
-package application.core.Exceptions;
+package application.core.exceptions;
 
 import java.io.BufferedWriter;
 import java.io.File;

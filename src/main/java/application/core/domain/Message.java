@@ -1,6 +1,6 @@
-package application.core.Domain;
+package application.core.domain;
 
-import application.core.Exceptions.BadRequestExceptions.BadRequestException;
+import application.core.exceptions.BadRequestExceptions.BadRequestException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

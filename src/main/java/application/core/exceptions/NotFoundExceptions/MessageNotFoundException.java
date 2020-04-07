@@ -1,4 +1,4 @@
-package application.core.Exceptions.NotFoundExceptions;
+package application.core.exceptions.NotFoundExceptions;
 
 public class MessageNotFoundException extends NotFoundException
 {

@@ -1,9 +1,9 @@
-package application.core.Services;
+package application.core.services;
 
-import application.core.Database.MessageDatabase;
-import application.core.Exceptions.BadRequestExceptions.InvalidIdException;
-import application.core.Exceptions.NotFoundExceptions.MessageNotFoundException;
-import application.core.Domain.Message;
+import application.core.database.MessageDatabase;
+import application.core.exceptions.BadRequestExceptions.InvalidIdException;
+import application.core.exceptions.NotFoundExceptions.MessageNotFoundException;
+import application.core.domain.Message;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,23 +13,23 @@ import java.util.Map;
 @Service
 public class DatabaseService
 {
-	MessageDatabase messageDatabase = new MessageDatabase();
+	static MessageDatabase messageDatabase = new MessageDatabase();
 
 
-	public void addMessage(Message message)
+	public static void addMessage(Message message)
 	{
 		messageDatabase.save(message);
 	}
-	public void addMessage(Map<String, String> message)
+	public static void addMessage(Map<String, String> message)
 	{
 		messageDatabase.save(new Message(message.get("text"), message.get("tag")));
 	}
 
-	public ArrayList<Message> findAllMessages()
+	public static ArrayList<Message> findAllMessages()
 	{
 		return messageDatabase.findAll();
 	}
-	public List<Map<String, String>> findAllMessagesAsMapList()
+	public static List<Map<String, String>> findAllMessagesAsMapList()
 	{
 		ArrayList<Message> messages = findAllMessages();
 		List<Map<String, String>> list = new ArrayList<>();
@@ -43,7 +43,7 @@ public class DatabaseService
 		}
 		return list;
 	}
-	public Message findMessageById(Long id)
+	public static Message findMessageById(Long id)
 	{
 		if(id < 0)
 			throw new InvalidIdException(id);
@@ -53,7 +53,7 @@ public class DatabaseService
 		return message;
 	}
 
-	public void deleteMessage(Long id)
+	public static void deleteMessage(Long id)
 	{
 		messageDatabase.delete(id);
 	}
