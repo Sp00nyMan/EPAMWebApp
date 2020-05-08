@@ -1,4 +1,4 @@
-package application.core.Exceptions.BadRequestExceptions;
+package application.core.exceptions.BadRequestExceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,8 +1,8 @@
-package application.core.Controller;
+package application.core.controller;
 
-import application.core.Exceptions.NotFoundExceptions.NotFoundException;
-import application.core.Services.DatabaseService;
-import application.core.Domain.Message;
+import application.core.exceptions.NotFoundExceptions.NotFoundException;
+import application.core.services.DatabaseService;
+import application.core.domain.Message;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

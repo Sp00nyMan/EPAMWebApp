@@ -1,9 +1,9 @@
-package application.core.Services;
+package application.core.services;
 
-import application.core.Database.MessageDatabase;
-import application.core.Exceptions.BadRequestExceptions.InvalidIdException;
-import application.core.Exceptions.NotFoundExceptions.MessageNotFoundException;
-import application.core.Domain.Message;
+import application.core.database.MessageDatabase;
+import application.core.exceptions.BadRequestExceptions.InvalidIdException;
+import application.core.exceptions.NotFoundExceptions.MessageNotFoundException;
+import application.core.domain.Message;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
