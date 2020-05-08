@@ -1,13 +1,14 @@
 package application.core.database;
 
-import application.core.database.repositories.MessageCollection;
+import application.core.database.repositories.MessageRepository;
 import application.core.domain.Message;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class MessageDatabase
 {
-	private MessageCollection messages = new MessageCollection();
+	private MessageRepository messages;
 
 	public void save(Message message)
 	{
@@ -16,7 +17,7 @@ public class MessageDatabase
 
 	public ArrayList<Message> findAll()
 	{
-		return messages.messages();
+		return new ArrayList((Collection) messages.findAll());
 	}
 	public Message findById(Long id)
 	{
@@ -24,6 +25,6 @@ public class MessageDatabase
 	}
 	public void delete(Long id)
 	{
-		messages.remove(id);
+		messages.delete(findById(id));
 	}
 }
