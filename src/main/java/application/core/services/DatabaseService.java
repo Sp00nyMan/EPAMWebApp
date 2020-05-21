@@ -1,10 +1,12 @@
 package application.core.services;
 
 import application.core.database.MessageDatabase;
+import application.core.database.repositories.MessageRepository;
+import application.core.domain.Message;
 import application.core.exceptions.BadRequestExceptions.InvalidIdException;
 import application.core.exceptions.NotFoundExceptions.MessageNotFoundException;
-import application.core.domain.Message;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,48 +15,43 @@ import java.util.Map;
 @Service
 public class DatabaseService
 {
-	static MessageDatabase messageDatabase = new MessageDatabase();
+	private static MessageDatabase messageDatabase;
 
+	public DatabaseService(MessageRepository messageRepository) {
+		DatabaseService.messageDatabase = new MessageDatabase(messageRepository);
+	}
 
-	public static void addMessage(Message message)
-	{
+	public static void add(Message message) {
 		messageDatabase.save(message);
 	}
-	public static void addMessage(Map<String, String> message)
-	{
+	public static void add(Map<String, String> message)	{
 		messageDatabase.save(new Message(message.get("text"), message.get("tag")));
 	}
 
-	public static ArrayList<Message> findAllMessages()
-	{
+	public static ArrayList<Message> findAllMessages() {
 		return messageDatabase.findAll();
 	}
-	public static List<Map<String, String>> findAllMessagesAsMapList()
-	{
+	public static List<Map<String, String>> findAllMessagesAsMapList() {
 		ArrayList<Message> messages = findAllMessages();
-		List<Map<String, String>> list = new ArrayList<>();
 		if(messages.isEmpty())
-		{
 			return null;
-		}
+		List<Map<String, String>> list = new ArrayList<>();
 		for (Message message : messages)
-		{
 			list.add(message.asHashMap());
-		}
 		return list;
 	}
 	public static Message findMessageById(Long id)
 	{
-		if(id < 0)
-			throw new InvalidIdException(id);
-		Message message = messageDatabase.findById(id);
-		if(message == null)
-			throw new MessageNotFoundException(id);
-		return message;
+		return messageDatabase.findById(id);
 	}
 
 	public static void deleteMessage(Long id)
 	{
 		messageDatabase.delete(id);
+	}
+
+	public static void update(Long id, Message msg)
+	{
+		messageDatabase.update(id, msg);
 	}
 }

@@ -18,6 +18,6 @@ public class ScheduledTasks
 	{
 		System.out.println(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()));
 		Message message = new Message("Scheduled message №" + DatabaseService.findAllMessages().size(), "scheduled");
-		DatabaseService.addMessage(message);
+		DatabaseService.add(message);
 	}
 }
